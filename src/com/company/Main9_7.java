@@ -49,13 +49,16 @@ public class Main9_7 {
                 for (int j = 0; j < k; j++) {
                     if (tmp[i][j] == 0) {
                         p=true;
+                    }                                   //находим нулевые строки и заносим их индексы в массив
+                    else {
+                        p=false;
+                        break;
                     }
-                    else p=false;
                 }
                 if(p) count[i]=1;
             }
             int sum=0;
-            for (int i = 0; i < count.length; i++) {
+            for (int i = 0; i < count.length; i++) {      //считаем кол-во нулевых строк
                 if (count[i]>0) sum++;
             }
             int [][]result = new int[(int)k-sum][(int)k];
@@ -66,9 +69,47 @@ public class Main9_7 {
                 }
                 for (int j = 0; j < tmp[i].length; j++) {
                     result[index][j]= tmp[i][j];
-                    System.out.print(result[index][j] + " ");
                 }
                 index++;
+            }
+            System.out.println();
+            //удалить лишние столбцы
+            int[] count2 = new int[result[0].length];
+            Arrays.fill(count2,0);
+            for (int i = 0; i <result.length ; i++) {
+                p=false;
+                for (int j = 0; j < result[i].length; j++) {
+                    if (tmp[j][i] == 0) {
+                        p=true;
+                    }                                         //находим нулевые столбцы и заносим их индексы в массив
+                    else{
+                        p=false;
+                        break;
+                    }
+                }
+                if(p) count2[i]=1;
+            }
+            int sum2=0;
+            for (int i = 0; i < count2.length; i++) {         //считаем кол-во нулевых столбцов
+                if (count2[i]>0) sum2++;
+            }
+            int [][]result2 = new int[result.length][result[0].length-sum2];
+            int index2 = 0;
+            for (int i = 0; i < count2.length; i++) {
+                if (count2[i] > 0) {
+                    continue;
+                }
+                else {
+                    for (int j = 0; j < result.length; j++) {
+                        result2[j][index2]=result[j][i];
+                    }
+                    index2++;
+                }
+            }
+            for (int i = 0; i < result2.length; i++) {
+                for (int j = 0; j < result2[i].length; j++) {
+                    System.out.print(result2[i][j] + " ");
+                }
                 System.out.println();
             }
         }

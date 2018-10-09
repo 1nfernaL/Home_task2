@@ -37,7 +37,7 @@ public class Methods {
                     c[n++] = b[i][j];
                 }
             }
-            b[i] = Arrays.copyOf(c, c.length);
+            b[i] = Arrays.copyOf(c, c.length);//copyOf заполняет свободное место нулями
         }
         return b;
     }
